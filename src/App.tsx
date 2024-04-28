@@ -1,23 +1,24 @@
-import { useState } from 'react'
 import './App.css'
-import CurrencyList from "./components/CurrencyList.tsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {useState} from "react";
+import CurrenciesPage from "./pages/CurrenciesPage.tsx";
+import Tabs from "./components/Tabs.tsx";
+import LiveFeedPage from "./pages/LiveFeedPage.tsx";
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [tab, setTab] = useState('currencies');
 
   return (
-    <>
-      <h1>CryptoTable</h1>
-      <div className="card">
-          <p>
-              Basic app setup
-          </p>
-          <CurrencyList/>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-      </div>
-    </>
+      <QueryClientProvider client={queryClient}>
+          <Tabs setPage={setTab}/>
+          {tab == 'currencies' ? (
+              <CurrenciesPage/>
+          ) : (
+              <LiveFeedPage/>
+          )}
+      </QueryClientProvider>
   )
 }
 
