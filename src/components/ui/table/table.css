@@ -1,0 +1,41 @@
+.table {
+    position: relative;
+    width: 100%;
+    overflow: auto;
+}
+
+.table__whole {
+    width: 100%;
+    caption-side: bottom;
+}
+
+.table__header {
+    border-bottom-width: 1px;
+}
+
+.table__body {
+    border-top-width: 1px;
+    font-weight: 500;
+}
+
+.table__row {
+    border-bottom-width: 1px;
+
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.table__head {
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+.table_cell{
+    padding: 1rem;
+    vertical-align: middle;
+}

@@ -1,14 +1,15 @@
 import * as React from "react"
-import {cn} from "../../utils.ts";
+import {cn} from "../../../utils.ts";
+import "./table.css";
 
 const Table = React.forwardRef<
     HTMLTableElement,
     React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-    <div >
+    <div className="table">
         <table
             ref={ref}
-            className={cn( className )}
+            className={cn( "table__whole",className )}
             {...props}
         />
     </div>
@@ -19,7 +20,7 @@ const TableHeader = React.forwardRef<
     HTMLTableSectionElement,
     React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-    <thead ref={ref} className={cn( className )} {...props} />
+    <thead ref={ref} className={cn( "table__header", className )} {...props} />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -29,7 +30,7 @@ const TableBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <tbody
         ref={ref}
-        className={cn( className )}
+        className={cn( "table__body", className )}
         {...props}
     />
 ))
@@ -41,7 +42,7 @@ const TableFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <tfoot
         ref={ref}
-        className={cn( className )}
+        className={cn( "table_footer" ,className )}
         {...props}
     />
 ))
@@ -53,7 +54,7 @@ const TableRow = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <tr
         ref={ref}
-        className={cn( className )}
+        className={cn( "table__row", className )}
         {...props}
     />
 ))
@@ -65,7 +66,7 @@ const TableHead = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <th
         ref={ref}
-        className={cn( className )}
+        className={cn( "table__head", className )}
         {...props}
     />
 ))
@@ -77,7 +78,7 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <td
         ref={ref}
-        className={cn( className )}
+        className={cn( "table__cell",className )}
         {...props}
     />
 ))
@@ -89,7 +90,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <caption
         ref={ref}
-        className={cn( className )}
+        className={cn( "table__caption", className )}
         {...props}
     />
 ))

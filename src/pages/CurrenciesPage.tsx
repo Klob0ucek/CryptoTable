@@ -1,7 +1,9 @@
 import {FC, useState} from "react";
-import CurrencyTable from "../components/CurrencyTable.tsx";
+import CurrencyTable from "../components/currencyTable/CurrencyTable.tsx";
 import {useCurrencies} from "../hooks/useCurrencies.ts";
 import {Currency} from "../models/currency.ts";
+import CurrencyTableLoader from "../components/currencyTable/CurrencyTableLoader.tsx";
+import {Button} from "../components/ui/button/Button.tsx";
 
 const CurrenciesPage: FC<{}> = () => {
     const [query, setQuery] = useState('');
@@ -19,13 +21,13 @@ const CurrenciesPage: FC<{}> = () => {
         <main>
             <section>
                 <h1>Top Cryptocurrencies</h1>
-                <button onClick={handleReloadClick}>Reload Data</button>
+                <Button onClick={handleReloadClick} label="Reload Data"/>
             </section>
             <input type="text" placeholder="Search..." onChange={(e) => setQuery(e.target.value)}/>
             {data && !isFetching ? (
                 <CurrencyTable data={search(data.data)}/>
             ) : (
-                <div>sooo empty</div>
+                <CurrencyTableLoader/>
             )}
         </main>
     );

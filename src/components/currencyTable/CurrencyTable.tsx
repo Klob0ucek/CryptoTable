@@ -1,6 +1,6 @@
 import {FC} from 'react';
-import {Currency} from "../models/currency.ts";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "./ui/table.tsx";
+import {Currency} from "../../models/currency.ts";
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../ui/table/table.tsx";
 
 type CurrencyTableProps = {
     data: Currency[];
@@ -22,20 +22,20 @@ const CurrencyTable: FC<CurrencyTableProps> = (props) => {
             <TableBody>
                 {data?.map((currency) => (
                     <TableRow key={currency.id}>
-                        <TableCell >
+                        <TableCell>
                             {currency.rank}
                         </TableCell>
-                        <TableCell >
+                        <TableCell>
                             {currency.symbol}
                         </TableCell>
                         <TableCell >
                             {currency.name}
                         </TableCell>
-                        <TableCell >
-                            {currency.priceUsd} $
+                        <TableCell>
+                            {Number(currency.priceUsd).toFixed(6)} $
                         </TableCell>
                         <TableCell>
-                            {currency.changePercent24Hr}
+                            {Number(currency.changePercent24Hr).toPrecision(7)} %
                         </TableCell>
                     </TableRow>
                 ))}

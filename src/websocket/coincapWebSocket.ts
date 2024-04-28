@@ -1,7 +1,8 @@
-const url = "wss://ws.coincap.io/prices?assets=bitcoin,ethereum,monero,litecoin";
+const url = "wss://ws.coincap.io/prices?assets=";
 
-export function connectToWebSocket(onMessage: (data: any) => void) {
-    const ws = new WebSocket(url);
+export function connectToWebSocket(currencies: string, onMessage: (data: any) => void) {
+    console.log(url + currencies);
+    const ws = new WebSocket(url + currencies);
 
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
