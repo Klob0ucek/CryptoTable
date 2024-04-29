@@ -1,10 +1,15 @@
 import {FC} from 'react';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../ui/table/table.tsx";
 import {Placeholder} from "../ui/placeholder/Placeholder.tsx";
+import {cn} from "../../utils.ts";
 
-const CurrencyTableLoader: FC<{}> = () => {
+type CurrencyTableLoaderProps = {
+    className?: string;
+}
+
+const CurrencyTableLoader: FC<CurrencyTableLoaderProps> = ({className}) => {
     return (
-        <Table>
+        <Table className={cn(className)}>
             <TableHeader>
                 <TableRow>
                     <TableHead >Rank</TableHead>

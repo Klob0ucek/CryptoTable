@@ -1,33 +1,30 @@
-import {FC, useState} from "react";
+import {FC, useMemo, useState} from "react";
 import CurrencyTable from "../components/currencyTable/CurrencyTable.tsx";
 import {useCurrencies} from "../hooks/useCurrencies.ts";
-import {Currency} from "../models/currency.ts";
 import CurrencyTableLoader from "../components/currencyTable/CurrencyTableLoader.tsx";
-import {Button} from "../components/ui/button/Button.tsx";
+import "./page.css"
+import TextInput from "../components/ui/textinput/TextInput.tsx";
 
 const CurrenciesPage: FC<{}> = () => {
     const [query, setQuery] = useState('');
-    const { data, isFetching, refetch } = useCurrencies({limit: 100, offset: 0});
+    const { data, isFetching } = useCurrencies({limit: 100, offset: 0});
 
-    const search = (data: Currency[]) => {
-        return data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
-    }
-
-    const handleReloadClick = () => {
-        refetch();
-    };
+    const filteredData = useMemo(() => {
+        if (!data) return [];
+        return data.data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+    }, [data, query]);
 
     return (
-        <main>
-            <section>
-                <h1>Top Cryptocurrencies</h1>
-                <Button onClick={handleReloadClick} label="Reload Data"/>
+        <main className="page">
+            <section className="page__header">
+                <h1 className="page__header-name">Top Cryptocurrencies</h1>
+                <TextInput placeholder="Search..." onChange={(e) => setQuery(e.target.value)} initialText={query} className="page__header-input"/>
             </section>
-            <input type="text" placeholder="Search..." onChange={(e) => setQuery(e.target.value)}/>
+
             {data && !isFetching ? (
-                <CurrencyTable data={search(data.data)}/>
+                <CurrencyTable data={filteredData} className="page__body"/>
             ) : (
-                <CurrencyTableLoader/>
+                <CurrencyTableLoader className="page__body"/>
             )}
         </main>
     );

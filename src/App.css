@@ -1,6 +1,13 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
   text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width:1025px){
+  #root {
+    max-width: min(60%, 1280px);
+    padding: 2rem;
+  }
 }

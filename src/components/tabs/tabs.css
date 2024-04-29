@@ -1,7 +1,37 @@
 .tabs{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;
 
+    background-color: var(--background-light);
+    padding: 0.5rem 1rem;
+
+    border-radius: 0 0 var(--big-radius) var(--big-radius);
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    z-index: 1;
 }
 
 .tabs__button {
+    flex-grow: 1;
+}
 
+.highlighted {
+    background-color: red;
+}
+
+@media screen and (min-width:1025px){
+    .tabs {
+        position: static;
+        width: 80%;
+        border-radius: var(--big-radius);
+        margin: 0 auto;
+    }
+    .tabs__button {
+        padding: 0.5rem 3rem;
+        flex-grow: 0;
+    }
 }

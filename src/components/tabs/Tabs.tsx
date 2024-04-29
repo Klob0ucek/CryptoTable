@@ -1,6 +1,7 @@
 import {FC} from "react";
 import {Button} from "../ui/button/Button.tsx";
 import {cn} from "../../utils.ts";
+import "./tabs.css"
 
 type TabsProps = {
     className?: string;

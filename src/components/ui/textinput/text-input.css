@@ -1,0 +1,29 @@
+.text-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-input__input{
+    border-radius: var(--small-radius);
+    font-family: inherit;
+    padding: 0.6em 1.2em;
+    border: 1px solid transparent;
+    background-color: var(--black);
+
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.25s;
+}
+
+.text-input__input:focus {
+    border-color: #646cff;
+}
+
+.text-input__input:focus {
+    outline: none;
+}
+
+.text-input__icon {
+    width: 2rem;
+    height: 2rem;
+}

@@ -4,12 +4,12 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../
 
 type CurrencyTableProps = {
     data: Currency[];
+    className?: string;
 };
 
-const CurrencyTable: FC<CurrencyTableProps> = (props) => {
-    const { data } = props;
+const CurrencyTable: FC<CurrencyTableProps> = ({data, className}) => {
     return (
-        <Table>
+        <Table className={className}>
             <TableHeader>
                 <TableRow>
                     <TableHead >Rank</TableHead>
@@ -20,7 +20,7 @@ const CurrencyTable: FC<CurrencyTableProps> = (props) => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data?.map((currency) => (
+                {data.map((currency) => (
                     <TableRow key={currency.id}>
                         <TableCell>
                             {currency.rank}
