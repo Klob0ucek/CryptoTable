@@ -19,10 +19,6 @@
     flex-grow: 1;
 }
 
-.highlighted {
-    background-color: red;
-}
-
 @media screen and (min-width:1025px){
     .tabs {
         position: static;

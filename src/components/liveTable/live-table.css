@@ -1,0 +1,9 @@
+.animated {
+    animation: updated 1s ease-in-out;
+    background-color: var(--backround-dark);
+}
+
+@keyframes updated {
+    from { background-color: green; }
+    to { background-color: var(--backround-dark); }
+}
