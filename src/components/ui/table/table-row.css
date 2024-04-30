@@ -1,0 +1,71 @@
+.table-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2% 10% auto 35% 35% 2%;
+    grid-template-areas:
+        "start rank id price change end";
+
+    border-bottom: 1px solid var(--background-light);
+    border-radius: var(--small-radius);
+    box-sizing: border-box;
+}
+
+.table-row__cell {
+    vertical-align: super;
+    font-weight: 400;
+    padding: 0.3rem 0;
+}
+
+.table-row__rank{
+    text-align: start;
+    grid-area: rank;
+}
+
+.table-row__id{
+    grid-area: id;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.table-row__id-name,
+.table-row__id-symbol {
+    width: 100%;
+}
+
+.table-row__id-symbol{
+    font-weight: 500;
+}
+
+
+.table-row__price{
+    text-align: end;
+    grid-area: price;
+}
+
+.table-row__update{
+    grid-area: change;
+    text-align: end;
+}
+
+.table-row__rank,
+.table-row__price,
+.table-row__update {
+    margin: auto 0;
+}
+
+@media screen and (min-width:1025px){
+    .table-row {
+        grid-template-columns: 5% 8% auto 25% 22% 5%;
+
+    }
+
+    .table-row__id{
+        flex-direction: row;
+    }
+
+    .table-row__id-name,
+    .table-row__id-symbol {
+        width: 50%;
+    }
+}

@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../ui/table/table.tsx";
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../ui/table/oldTable/table.tsx";
 import {Placeholder} from "../ui/placeholder/Placeholder.tsx";
 import {cn} from "../../utils.ts";
 

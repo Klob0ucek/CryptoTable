@@ -1,9 +1,11 @@
 import {FC, useEffect, useState} from 'react';
 import {Currency, WebSocketCurrency} from "../../models/currency.ts";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../ui/table/table.tsx";
 import "./live-table.css"
 import {useCoincapWebSocket} from "../../hooks/useCoincapWebSocket.ts";
-import {animated, useSpring} from 'react-spring';
+import {useSpring} from 'react-spring';
+import {cn} from "../../utils.ts";
+import {TableRow} from "../ui/table/TableRow.tsx";
+import {TableHeader} from "../ui/table/TableHeader.tsx";
 
 type CurrencyTableProps = {
     data: Currency[];
@@ -37,48 +39,22 @@ const LiveTable: FC<CurrencyTableProps> = ({data, className}) => {
     const getAnimation = (keyName: string, currentPrice: number) => {
         const currency = cachedData.filter(c => c.name === keyName).at(0);
         if (currency === undefined || currency.price === currentPrice){
-            return {};
+            return undefined;
         }
         return currency.price > currentPrice ? updateUp : updateDown;
     }
 
-    const TableRowAnimated = animated(TableRow);
-
     return (
-        <Table className={className}>
-            <TableHeader>
-                <TableRow>
-                    <TableHead >Rank</TableHead>
-                    <TableHead >Symbol</TableHead>
-                    <TableHead >Name</TableHead>
-                    <TableHead >Price</TableHead>
-                    <TableHead >Last 24 hours</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {data.map((currency) => (
-                    <TableRowAnimated
-                        key={currency.name.toLowerCase()}
-                        style={getAnimation(currency.name.toLowerCase(), currency.priceUsd)}>
-                        <TableCell>
-                            {currency.rank}
-                        </TableCell>
-                        <TableCell>
-                            {currency.symbol}
-                        </TableCell>
-                        <TableCell >
-                            {currency.name}
-                        </TableCell>
-                        <TableCell>
-                            {Number(currency.priceUsd).toPrecision(6)} $
-                        </TableCell>
-                        <TableCell>
-                            {Number(currency.changePercent24Hr).toFixed(6)} %
-                        </TableCell>
-                    </TableRowAnimated>
-                ))}
-            </TableBody>
-        </Table>
+        <div className={cn(className)}>
+            <TableHeader/>
+            {data.map(currency => (
+                <TableRow
+                    key={currency.name.toLowerCase()}
+                    style={getAnimation(currency.name.toLowerCase(), currency.priceUsd)}
+                    currency={currency}
+                />
+            ))}
+        </div>
     );
 }
 

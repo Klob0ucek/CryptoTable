@@ -1,0 +1,13 @@
+.table-row__header {
+    grid-template-columns: 0% 10% auto 35% 35% 2%;
+    grid-template-areas:
+        "start rank id price change end";
+
+    font-weight: 500;
+}
+
+@media screen and (min-width:1025px) {
+    .table-row {
+        grid-template-columns: 5% 8% auto 25% 22% 5%;
+    }
+}

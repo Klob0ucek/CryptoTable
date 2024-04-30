@@ -22,7 +22,7 @@
 @media screen and (min-width:1025px){
     .tabs {
         position: static;
-        width: 80%;
+        width: 65%;
         border-radius: var(--big-radius);
         margin: 0 auto;
     }
