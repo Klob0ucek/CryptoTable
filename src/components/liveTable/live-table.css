@@ -1,9 +1,11 @@
-.animated {
-    animation: updated 1s ease-in-out;
-    background-color: var(--backround-dark);
+@keyframes updatedUp {
+    from {background-color: rgba(103, 178, 67, 0.7);}
+    to {background-color: transparent;}
 }
 
-@keyframes updated {
-    from { background-color: green; }
-    to { background-color: var(--backround-dark); }
+@keyframes updatedDown {
+    from {background-color: rgba(178, 67, 67, 0.7);}
+    to {background-color: transparent;}
 }
+
+

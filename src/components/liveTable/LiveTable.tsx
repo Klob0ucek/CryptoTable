@@ -15,19 +15,32 @@ const CurrencyTable: FC<CurrencyTableProps> = ({data, className}) => {
     const live = ["bitcoin","ethereum","tether","bnb","solana"];
     const [animate, setAnimate] = useState<WebSocketCurrency[]>([])
     const { lastMessage } = useCoincapWebSocket(live.join(","));
-    const animation = useSpring({
-        from: { backgroundColor: 'green' },
-        to: { backgroundColor: 'green' },
+
+    const updateUp = useSpring({
+        from: { animation: 'updatedUp 500ms ease-in-out' },
+        config: { duration: 500 }
+    });
+
+    const updateDown = useSpring({
+        from: { animation: 'updatedDown 500ms ease-in-out' },
         config: { duration: 500 }
     });
 
     useEffect(() => {
         if (lastMessage !== null) {
             const parsed = getWebSocketCurrencies(JSON.parse(lastMessage.data));
-            parsed.currencies.map(c => console.log(c.name));
             setAnimate(parsed.currencies);
         }
     }, [lastMessage]);
+
+    const getAnimation = (keyName: string, currentPrice: number) => {
+        const currency = animate.filter(c => c.name === keyName).at(0);
+        if (currency === undefined || currency.price === currentPrice){
+            return {};
+        }
+        console.log(keyName);
+        return currency.price > currentPrice ? updateUp : updateDown;
+    }
 
     const TableRowAnimated = animated(TableRow);
 
@@ -46,7 +59,7 @@ const CurrencyTable: FC<CurrencyTableProps> = ({data, className}) => {
                 {data.map((currency) => (
                     <TableRowAnimated
                         key={currency.name.toLowerCase()}
-                        style={animate.map(c => c.name).includes(currency.name.toLowerCase()) ? animation : {}}>
+                        style={getAnimation(currency.name.toLowerCase(), currency.priceUsd)}>
                         <TableCell>
                             {currency.rank}
                         </TableCell>
@@ -57,10 +70,10 @@ const CurrencyTable: FC<CurrencyTableProps> = ({data, className}) => {
                             {currency.name}
                         </TableCell>
                         <TableCell>
-                            {Number(currency.priceUsd).toFixed(6)} $
+                            {Number(currency.priceUsd).toPrecision(6)} $
                         </TableCell>
                         <TableCell>
-                            {Number(currency.changePercent24Hr).toPrecision(7)} %
+                            {Number(currency.changePercent24Hr).toFixed(6)} %
                         </TableCell>
                     </TableRowAnimated>
                 ))}
