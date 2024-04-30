@@ -12,3 +12,12 @@ export type Currency = {
     vwap24Hr: number,
     explorer: string
 }
+
+export type WebSocketMessage = {
+    currencies: WebSocketCurrency[];
+}
+
+export type WebSocketCurrency = {
+    name: string;
+    price: number;
+}
