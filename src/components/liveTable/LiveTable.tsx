@@ -3,42 +3,42 @@ import {Currency, WebSocketCurrency} from "../../models/currency.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "../ui/table/table.tsx";
 import "./live-table.css"
 import {useCoincapWebSocket} from "../../hooks/useCoincapWebSocket.ts";
-import {getWebSocketCurrencies} from "../../utils.ts";
-import { useSpring, animated } from 'react-spring';
+import {animated, useSpring} from 'react-spring';
 
 type CurrencyTableProps = {
     data: Currency[];
     className?: string;
 };
 
-const CurrencyTable: FC<CurrencyTableProps> = ({data, className}) => {
-    const live = ["bitcoin","ethereum","tether","bnb","solana"];
-    const [animate, setAnimate] = useState<WebSocketCurrency[]>([])
-    const { lastMessage } = useCoincapWebSocket(live.join(","));
+const LiveTable: FC<CurrencyTableProps> = ({data, className}) => {
+    const live = ["bitcoin","ethereum","tether","bnb","solana"]
+    const [cachedData, setCachedData] = useState<WebSocketCurrency[]>([]);
+    const {getCached, reset} = useCoincapWebSocket(live.join(","));
 
     const updateUp = useSpring({
-        from: { animation: 'updatedUp 500ms ease-in-out' },
-        config: { duration: 500 }
+        from: { animation: 'updatedUp 700ms ease-in-out' },
+        config: { duration: 700 }
     });
 
     const updateDown = useSpring({
-        from: { animation: 'updatedDown 500ms ease-in-out' },
-        config: { duration: 500 }
+        from: { animation: 'updatedDown 700ms ease-in-out' },
+        config: { duration: 700 }
     });
 
     useEffect(() => {
-        if (lastMessage !== null) {
-            const parsed = getWebSocketCurrencies(JSON.parse(lastMessage.data));
-            setAnimate(parsed.currencies);
-        }
-    }, [lastMessage]);
+        const intervalId = setInterval(() => {
+            setCachedData(getCached().current);
+            reset();
+        }, 1000);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     const getAnimation = (keyName: string, currentPrice: number) => {
-        const currency = animate.filter(c => c.name === keyName).at(0);
+        const currency = cachedData.filter(c => c.name === keyName).at(0);
         if (currency === undefined || currency.price === currentPrice){
             return {};
         }
-        console.log(keyName);
         return currency.price > currentPrice ? updateUp : updateDown;
     }
 
@@ -82,4 +82,4 @@ const CurrencyTable: FC<CurrencyTableProps> = ({data, className}) => {
     );
 }
 
-export default CurrencyTable;
+export default LiveTable;
