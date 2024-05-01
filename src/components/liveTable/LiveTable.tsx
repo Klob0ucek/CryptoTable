@@ -1,6 +1,7 @@
 import {FC, useEffect, useState} from 'react';
 import {Currency, WebSocketCurrency} from "../../models/currency.ts";
 import "./live-table.css"
+import "./../topTable/top-table.css"
 import {useCoincapWebSocket} from "../../hooks/useCoincapWebSocket.ts";
 import {useSpring} from 'react-spring';
 import {cn} from "../../utils.ts";
@@ -45,7 +46,7 @@ const LiveTable: FC<CurrencyTableProps> = ({data, className}) => {
     }
 
     return (
-        <div className={cn(className)}>
+        <div className={cn(className, "table")}>
             <TableHeader/>
             {data.map(currency => (
                 <TableRow

@@ -2,18 +2,20 @@ import {FC} from "react";
 import {Button} from "../ui/button/Button.tsx";
 import {cn} from "../../utils.ts";
 import "./tabs.css"
+import {TabOptions} from "../../App.tsx";
 
 type TabsProps = {
     className?: string;
-    setPage: (data: string) => void;
+    setPage: (tab: TabOptions) => void;
 }
+
 const Tabs: FC<TabsProps> = ({setPage, className}) => {
     const currenciesPage = () => {
-        setPage('currencies');
+        setPage(TabOptions.Top);
     }
 
     const liveFeedPage = () => {
-        setPage('live');
+        setPage(TabOptions.Live);
     }
 
     return (

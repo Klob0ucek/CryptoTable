@@ -1,13 +1,12 @@
-import {FC, useMemo, useState} from "react";
-import CurrencyTable from "../components/currencyTable/CurrencyTable.tsx";
+import React, { useMemo, useState} from "react";
 import {useCurrencies} from "../hooks/useCurrencies.ts";
-import CurrencyTableLoader from "../components/currencyTable/CurrencyTableLoader.tsx";
 import "./page.css"
 import TextInput from "../components/ui/textinput/TextInput.tsx";
+import {TopTable} from "../components/topTable/TopTable.tsx";
 
-const CurrenciesPage: FC<{}> = () => {
+const CurrenciesPage: React.FC = () => {
     const [query, setQuery] = useState('');
-    const { data, isFetching } = useCurrencies({limit: 100, offset: 0});
+    const { data, isFetching} = useCurrencies({limit: 100, offset: 0});
 
     const filteredData = useMemo(() => {
         if (!data) return [];
@@ -22,10 +21,18 @@ const CurrenciesPage: FC<{}> = () => {
             </section>
 
             {data && !isFetching ? (
-                <CurrencyTable data={filteredData} className="page__body"/>
+                <TopTable currencies={filteredData} className="page__body"/>
             ) : (
-                <CurrencyTableLoader className="page__body"/>
+                <div className="page__body">
+                    Data are loading
+                </div>
             )}
+
+            <footer className="page__footer">
+                {"Data are loaded from "}
+                <a href="https://coincap.io/">CoinCap</a>
+                {" API"}
+            </footer>
         </main>
     );
 };

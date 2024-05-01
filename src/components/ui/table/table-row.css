@@ -5,8 +5,7 @@
     grid-template-areas:
         "start rank id price change end";
 
-    border-bottom: 1px solid var(--background-light);
-    border-radius: var(--small-radius);
+    border-radius: var(--big-radius);
     box-sizing: border-box;
 }
 
@@ -52,6 +51,13 @@
 .table-row__price,
 .table-row__update {
     margin: auto 0;
+}
+
+.table-row__divider {
+    border-top: 1px solid var(--background-light);
+    margin: 0 auto;
+    opacity: 55%;
+    width: 95%;
 }
 
 @media screen and (min-width:1025px){

@@ -17,6 +17,17 @@
     margin: 0 0.5rem;
 }
 
+.page__footer {
+    width: auto;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+    opacity: 0.5;
+}
+
+.page__footer a {
+    text-decoration: none;
+}
+
 @media screen and (min-width:1025px){
     .page__header {
         flex-direction: row;

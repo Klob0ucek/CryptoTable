@@ -6,6 +6,11 @@
     font-weight: 500;
 }
 
+.table-row__divider-header {
+    width: 100%;
+    margin-bottom: 0.2rem;
+}
+
 @media screen and (min-width:1025px) {
     .table-row {
         grid-template-columns: 5% 8% auto 25% 22% 5%;
