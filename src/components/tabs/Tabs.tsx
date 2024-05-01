@@ -2,7 +2,7 @@ import {FC} from "react";
 import {Button} from "../ui/button/Button.tsx";
 import {cn} from "../../utils.ts";
 import "./tabs.css"
-import {TabOptions} from "../../App.tsx";
+import {TabOptions} from "../../models/fiterOptions.ts";
 
 type TabsProps = {
     className?: string;

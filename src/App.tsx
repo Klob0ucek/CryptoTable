@@ -4,11 +4,7 @@ import {useState} from "react";
 import CurrenciesPage from "./pages/CurrenciesPage.tsx";
 import Tabs from "./components/tabs/Tabs.tsx";
 import LiveFeedPage from "./pages/LiveFeedPage.tsx";
-
-export enum TabOptions {
-    Top = "top",
-    Live = "live"
-}
+import {TabOptions} from "./models/fiterOptions.ts";
 
 const queryClient = new QueryClient();
 

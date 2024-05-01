@@ -13,6 +13,12 @@ export enum Order {
     Desc = "Desc"
 }
 
+export enum TabOptions {
+    Top = "top",
+    Live = "live"
+}
+
+
 export function sortCurrencies(data: Currency[], sortBy: SortBy, order: Order): Currency[] {
     const sortFunction = (a: Currency, b: Currency): number => {
         let comparisonValue: number;

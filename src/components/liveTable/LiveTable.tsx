@@ -35,7 +35,7 @@ const LiveTable: FC<CurrencyTableProps> = ({data, className}) => {
         }, 1000);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [getCached, reset]);
 
     const getAnimation = (keyName: string, currentPrice: number) => {
         const currency = cachedData.filter(c => c.name === keyName).at(0);
