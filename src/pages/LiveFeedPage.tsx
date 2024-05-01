@@ -9,7 +9,7 @@ const LiveFeedPage: React.FC = () => {
     return (
         <main className="page">
             <section className="page__header">
-                <h1>Top Cryptocurrencies</h1>
+                <h1 className="page__header-name">Live CryptoTable</h1>
             </section>
 
             {data && !isFetching ? (

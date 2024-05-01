@@ -16,10 +16,7 @@
 }
 
 .text-input__input:focus {
-    border-color: #646cff;
-}
-
-.text-input__input:focus {
+    border-color: var(--border-color);
     outline: none;
 }
 
@@ -27,3 +24,5 @@
     width: 2rem;
     height: 2rem;
 }
+
+

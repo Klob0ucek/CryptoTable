@@ -13,11 +13,9 @@ interface TableProps {
 export const TopTable: React.FC<TableProps> = ({className, currencies}) => {
     return (
         <div className={cn(className, "table")}>
-            <TableHeader/>
+            <TableHeader key={"header"}/>
             {currencies.map(currency => (
-                <>
-                    <TableRow currency={currency} key={currency.name}/>
-                </>
+                <TableRow currency={currency} key={currency.name}/>
             ))}
         </div>
     );

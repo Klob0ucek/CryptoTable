@@ -24,8 +24,10 @@ const CurrenciesPage: React.FC = () => {
         <main className="page">
             <section className="page__header">
                 <h1 className="page__header-name">Top Cryptocurrencies</h1>
-                <TextInput placeholder="Search..." onChange={(e) => setQuery(e.target.value)} initialText={query} className="page__header-input"/>
-                <Filter setSortBy={setSortBy} order={order} setOrder={setOrder}></Filter>
+                <div className="page__header-input">
+                    <TextInput placeholder="Search..." onChange={(e) => setQuery(e.target.value)} initialText={query} />
+                    <Filter setSortBy={setSortBy} order={order} setOrder={setOrder}></Filter>
+                </div>
             </section>
 
             {data && !isFetching ? (

@@ -9,12 +9,15 @@
 }
 
 .page__header-name {
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
 }
 
 .page__header-input {
     margin: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
 }
 
 .page__footer {
